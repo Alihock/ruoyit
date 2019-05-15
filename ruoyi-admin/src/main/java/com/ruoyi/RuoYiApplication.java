@@ -9,6 +9,8 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
  * 启动程序
  * 
  * @author ruoyi
+ * @SpringBootApplication 该注解的作用是，排除自动注入数据源的配置（取消数据库配置），一般使用在客户端（消费者）服务中
+ * @MapperScan 添加对mapper包扫描  mapper类没有在Spring Boot主程序可以扫描的包或者子包下面
  */
 @SpringBootApplication(exclude = { DataSourceAutoConfiguration.class })
 @MapperScan("com.ruoyi.*.mapper")

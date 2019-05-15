@@ -1,5 +1,6 @@
 package com.ruoyi.framework.util;
 
+import com.ruoyi.system.domain.Task;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 import org.apache.shiro.mgt.RealmSecurityManager;
@@ -34,6 +35,13 @@ public class ShiroUtils
     {
         getSubject().logout();
     }
+    /**
+    *修改
+    */
+
+    /**
+     *修改
+     */
 
     public static SysUser getSysUser()
     {
@@ -64,10 +72,7 @@ public class ShiroUtils
         realm.clearCachedAuthorizationInfo();
     }
 
-    public static Long getUserId()
-    {
-        return getSysUser().getUserId().longValue();
-    }
+    public static Long getUserId() { return getSysUser().getUserId().longValue(); }
 
     public static String getLoginName()
     {

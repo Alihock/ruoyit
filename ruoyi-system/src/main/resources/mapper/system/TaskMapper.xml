@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.TaskMapper">
+    
+    <resultMap type="Task" id="TaskResult">
+        <result property="taskId"    column="task_id"    />
+        <result property="courseNum"    column="course_num"    />
+        <result property="courseName"    column="course_name"    />
+        <result property="major"    column="major"    />
+        <result property="faculty"    column="faculty"    />
+        <result property="classInf"    column="class_inf"    />
+        <result property="classNum"    column="class_num"    />
+        <result property="courseType"    column="course_type"    />
+        <result property="textType"    column="text_type"    />
+        <result property="teacher"    column="teacher"    />
+        <result property="week"    column="week"    />
+        <result property="weekTime"    column="week_time"    />
+        <result property="media"    column="media"    />
+        <result property="doubleLang"    column="double_lang"    />
+        <result property="asist"    column="asist"    />
+        <result property="remark"    column="remark"    />
+    </resultMap>
+	
+	<sql id="selectTaskVo">
+        select task_id, course_num, course_name, major, faculty, class_inf, class_num, course_type, text_type, teacher, week, week_time, media, double_lang, asist, remark from sys_task
+    </sql>
+	
+    <select id="selectTaskList" parameterType="Task" resultMap="TaskResult">
+        <include refid="selectTaskVo"/>
+        <where>  
+            <if test="taskId != null "> and task_id = #{taskId}</if>
+             <if test="courseNum != null  and courseNum != '' "> and course_num = #{courseNum}</if>
+             <if test="courseName != null  and courseName != '' "> and course_name = #{courseName}</if>
+             <if test="major != null  and major != '' "> and major = #{major}</if>
+             <if test="faculty != null  and faculty != '' "> and faculty = #{faculty}</if>
+             <if test="classInf != null  and classInf != '' "> and class_inf = #{classInf}</if>
+             <if test="classNum != null  and classNum != '' "> and class_num = #{classNum}</if>
+             <if test="courseType != null  and courseType != '' "> and course_type = #{courseType}</if>
+             <if test="textType != null  and textType != '' "> and text_type = #{textType}</if>
+             <if test="teacher != null  and teacher != '' "> and teacher = #{teacher}</if>
+             <if test="week != null  and week != '' "> and week = #{week}</if>
+             <if test="weekTime != null  and weekTime != '' "> and week_time = #{weekTime}</if>
+             <if test="media != null  and media != '' "> and media = #{media}</if>
+             <if test="doubleLang != null  and doubleLang != '' "> and double_lang = #{doubleLang}</if>
+             <if test="asist != null  and asist != '' "> and asist = #{asist}</if>
+             <if test="remark != null  and remark != '' "> and remark = #{remark}</if>
+         </where>
+    </select>
+    
+    <select id="selectTaskById" parameterType="Long" resultMap="TaskResult">
+        <include refid="selectTaskVo"/>
+        where task_id = #{taskId}
+    </select>
+        
+    <insert id="insertTask" parameterType="Task">
+        insert into sys_task
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="taskId != null  ">task_id,</if>
+			<if test="courseNum != null  and courseNum != ''  ">course_num,</if>
+			<if test="courseName != null  and courseName != ''  ">course_name,</if>
+			<if test="major != null  and major != ''  ">major,</if>
+			<if test="faculty != null  and faculty != ''  ">faculty,</if>
+			<if test="classInf != null  and classInf != ''  ">class_inf,</if>
+			<if test="classNum != null  and classNum != ''  ">class_num,</if>
+			<if test="courseType != null  and courseType != ''  ">course_type,</if>
+			<if test="textType != null  and textType != ''  ">text_type,</if>
+			<if test="teacher != null  and teacher != ''  ">teacher,</if>
+			<if test="week != null  and week != ''  ">week,</if>
+			<if test="weekTime != null  and weekTime != ''  ">week_time,</if>
+			<if test="media != null  and media != ''  ">media,</if>
+			<if test="doubleLang != null  and doubleLang != ''  ">double_lang,</if>
+			<if test="asist != null  and asist != ''  ">asist,</if>
+			<if test="remark != null  and remark != ''  ">remark,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="taskId != null  ">#{taskId},</if>
+			<if test="courseNum != null  and courseNum != ''  ">#{courseNum},</if>
+			<if test="courseName != null  and courseName != ''  ">#{courseName},</if>
+			<if test="major != null  and major != ''  ">#{major},</if>
+			<if test="faculty != null  and faculty != ''  ">#{faculty},</if>
+			<if test="classInf != null  and classInf != ''  ">#{classInf},</if>
+			<if test="classNum != null  and classNum != ''  ">#{classNum},</if>
+			<if test="courseType != null  and courseType != ''  ">#{courseType},</if>
+			<if test="textType != null  and textType != ''  ">#{textType},</if>
+			<if test="teacher != null  and teacher != ''  ">#{teacher},</if>
+			<if test="week != null  and week != ''  ">#{week},</if>
+			<if test="weekTime != null  and weekTime != ''  ">#{weekTime},</if>
+			<if test="media != null  and media != ''  ">#{media},</if>
+			<if test="doubleLang != null  and doubleLang != ''  ">#{doubleLang},</if>
+			<if test="asist != null  and asist != ''  ">#{asist},</if>
+			<if test="remark != null  and remark != ''  ">#{remark},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateTask" parameterType="Task">
+        update sys_task
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="courseNum != null  and courseNum != ''  ">course_num = #{courseNum},</if>
+            <if test="courseName != null  and courseName != ''  ">course_name = #{courseName},</if>
+            <if test="major != null  and major != ''  ">major = #{major},</if>
+            <if test="faculty != null  and faculty != ''  ">faculty = #{faculty},</if>
+            <if test="classInf != null  and classInf != ''  ">class_inf = #{classInf},</if>
+            <if test="classNum != null  and classNum != ''  ">class_num = #{classNum},</if>
+            <if test="courseType != null  and courseType != ''  ">course_type = #{courseType},</if>
+            <if test="textType != null  and textType != ''  ">text_type = #{textType},</if>
+            <if test="teacher != null  and teacher != ''  ">teacher = #{teacher},</if>
+            <if test="week != null  and week != ''  ">week = #{week},</if>
+            <if test="weekTime != null  and weekTime != ''  ">week_time = #{weekTime},</if>
+            <if test="media != null  and media != ''  ">media = #{media},</if>
+            <if test="doubleLang != null  and doubleLang != ''  ">double_lang = #{doubleLang},</if>
+            <if test="asist != null  and asist != ''  ">asist = #{asist},</if>
+            <if test="remark != null  and remark != ''  ">remark = #{remark},</if>
+        </trim>
+        where task_id = #{taskId}
+    </update>
+
+	<delete id="deleteTaskById" parameterType="Long">
+        delete from sys_task where task_id = #{taskId}
+    </delete>
+	
+    <delete id="deleteTaskByIds" parameterType="String">
+        delete from sys_task where task_id in 
+        <foreach item="taskId" collection="array" open="(" separator="," close=")">
+            #{taskId}
+        </foreach>
+    </delete>
+    
+</mapper>

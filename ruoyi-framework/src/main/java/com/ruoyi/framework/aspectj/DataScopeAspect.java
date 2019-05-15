@@ -33,11 +33,18 @@ public class DataScopeAspect
      * 自定数据权限
      */
     public static final String DATA_SCOPE_CUSTOM = "2";
+/**
+     * 部门数据权限
+      */
+    public static final String DATA_SCOPE_DEPT = "3";
 
+         /**
     /**
      * 数据权限过滤关键字
      */
     public static final String DATA_SCOPE = "dataScope";
+
+
 
     // 配置织入点
     @Pointcut("@annotation(com.ruoyi.common.annotation.DataScope)")
@@ -94,6 +101,10 @@ public class DataScopeAspect
                 sqlString.append(StringUtils.format(
                         " OR {}.dept_id IN ( SELECT dept_id FROM sys_role_dept WHERE role_id = {} ) ", alias,
                         role.getRoleId()));
+            }
+            else if (DATA_SCOPE_DEPT.equals(dataScope))
+            {
+                sqlString.append(StringUtils.format(" OR {}.dept_id = {} ", alias, user.getDeptId()));
             }
         }
 

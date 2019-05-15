@@ -2,6 +2,8 @@ package com.ruoyi.system.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,8 @@ import com.ruoyi.system.mapper.SysUserPostMapper;
 import com.ruoyi.system.mapper.SysUserRoleMapper;
 import com.ruoyi.system.service.ISysConfigService;
 import com.ruoyi.system.service.ISysUserService;
+import org.apache.shiro.SecurityUtils;
+
 
 /**
  * 用户 业务层处理
@@ -470,5 +474,12 @@ public class SysUserServiceImpl implements ISysUserService
             throw new BusinessException("不允许修改超级管理员用户");
         }
         return userMapper.updateUser(user);
+    }
+
+    @Override
+    public Object getUser() {
+        Subject sub = SecurityUtils.getSubject();
+        Object obj = sub.getPrincipal();
+        return obj;
     }
 }

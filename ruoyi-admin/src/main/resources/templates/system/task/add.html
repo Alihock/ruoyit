@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+	<th:block th:include="include :: header('新增0000')" />
+</head>
+<body class="white-bg">
+    <div class="wrapper wrapper-content animated fadeInRight ibox-content">
+        <form class="form-horizontal m" id="form-task-add">
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">
+课程号：</label>
+				<div class="col-sm-8">
+					<input id="courseNum" name="courseNum" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">课程名：</label>
+				<div class="col-sm-8">
+					<input id="courseName" name="courseName" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">专业：</label>
+				<div class="col-sm-8">
+					<input id="major" name="major" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">院系：</label>
+				<div class="col-sm-8">
+					<input id="faculty" name="faculty" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">班级信息：</label>
+				<div class="col-sm-8">
+					<input id="classInf" name="classInf" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">班级人数：</label>
+				<div class="col-sm-8">
+					<input id="classNum" name="classNum" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">课程属性：</label>
+				<div class="col-sm-8">
+					<input id="courseType" name="courseType" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">考试类别：</label>
+				<div class="col-sm-8">
+					<input id="textType" name="textType" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">任课教师：</label>
+				<div class="col-sm-8">
+					<input id="teacher" name="teacher" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">上课起止周：</label>
+				<div class="col-sm-8">
+					<input id="week" name="week" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">周学时：</label>
+				<div class="col-sm-8">
+					<input id="weekTime" name="weekTime" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">多媒体：</label>
+				<div class="col-sm-8">
+					<input id="media" name="media" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">双语：</label>
+				<div class="col-sm-8">
+					<input id="doubleLang" name="doubleLang" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">辅导：</label>
+				<div class="col-sm-8">
+					<input id="asist" name="asist" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">备注：</label>
+				<div class="col-sm-8">
+					<input id="remark" name="remark" class="form-control" type="text">
+				</div>
+			</div>
+		</form>
+	</div>
+    <div th:include="include::footer"></div>
+    <script type="text/javascript">
+		var prefix = ctx + "system/task"
+		$("#form-task-add").validate({
+			rules:{
+				xxxx:{
+					required:true,
+				},
+			},
+			focusCleanup: true
+		});
+		
+		function submitHandler() {
+	        if ($.validate.form()) {
+	            $.operate.save(prefix + "/add", $('#form-task-add').serialize());
+	        }
+	    }
+	</script>
+</body>
+</html>

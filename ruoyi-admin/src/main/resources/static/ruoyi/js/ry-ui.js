@@ -507,7 +507,7 @@
             // 确认窗体
             confirm: function (content, callBack) {
             	layer.confirm(content, {
-        	        icon: 3,
+            		icon: 3,
         	        title: "系统提示",
         	        btn: ['确认', '取消'],
         	        btnclass: ['btn btn-primary', 'btn btn-danger'],
@@ -670,6 +670,63 @@
         	    };
         	    $.ajax(config)
             },
+			/*修改 确认提交
+			submitmessage: function(formId) {
+				var currentId = $.common.isEmpty(formId) ? 'importForm' : formId;
+				$.form.reset(currentId);
+				layer.open({
+					type: 1,
+					area: ['400px', '230px'],
+					fix: false,
+					//不固定
+					maxmin: true,
+					shade: 0.3,
+					title: '导入' + $.table._option.modalName + '数据',
+					content: $('#' + currentId),
+					btn: ['<i class="fa fa-check"></i> 确认', '<i class="fa fa-remove"></i> 取消'],
+					// 弹层外区域关闭
+					shadeClose: true,
+					btn1: function(index, layero){
+						var file = layero.find('#file').val();
+						if (file == '' || (!$.common.endWith(file, '.xls') && !$.common.endWith(file, '.xlsx'))){
+							$.modal.msgWarning("请选择后缀为 “xls”或“xlsx”的文件。");
+							return false;
+						}
+						var index = layer.load(2, {shade: false});
+						$.modal.disable();
+						var formData = new FormData();
+						formData.append("file", $('#file')[0].files[0]);
+						formData.append("updateSupport", $("input[name='updateSupport']").is(':checked'));
+						$.ajax({
+							url: $.table._option.importUrl,
+							data: formData,
+							cache: false,
+							contentType: false,
+							processData: false,
+							type: 'POST',
+							success: function (result) {
+								if (result.code == web_status.SUCCESS) {
+									$.modal.closeAll();
+									$.modal.alertSuccess(result.msg);
+									$.table.refresh();
+								} else if (result.code == web_status.WARNING) {
+									layer.close(index);
+									$.modal.enable();
+									$.modal.alertWarning(result.msg)
+								} else {
+									layer.close(index);
+									$.modal.enable();
+									$.modal.alertError(result.msg);
+								}
+							}
+						});
+					}
+				});
+			},
+*/
+
+			//submitmessage：function()
+			//修改 校验
             // post请求传输
             post: function(url, data) {
             	$.operate.submit(url, "post", "json", data);
